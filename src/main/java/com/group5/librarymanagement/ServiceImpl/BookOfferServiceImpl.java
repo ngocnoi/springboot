@@ -10,8 +10,8 @@ import com.group5.librarymanagement.Repositories.BookOfferRepository;
 import com.group5.librarymanagement.Service.BookOfferService;
 
 @Service
-public class BookOfferServiceImpl implements BookOfferService{
-    
+public class BookOfferServiceImpl implements BookOfferService {
+
 	@Autowired
 	private BookOfferRepository Repository;
 
@@ -23,23 +23,26 @@ public class BookOfferServiceImpl implements BookOfferService{
 
 	@Override
 	public BookOffer addBookOffer(BookOffer bookOffer) {
-		 return Repository.saveAndFlush(bookOffer);
-		
+		BookOffer createBookOffer = new BookOffer();
+		createBookOffer.setBookName(bookOffer.getBookName());
+		createBookOffer.setBookImage(bookOffer.getBookImage());
+		createBookOffer.setDescription(bookOffer.getDescription());
+		return Repository.saveAndFlush(bookOffer);
+
 	}
 
 	@Override
 	public void updateBookOffer(Integer id, BookOffer publisher) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void deleteBookOffer(Integer id) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
-	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<BookOffer> listAllBookOffer() {
