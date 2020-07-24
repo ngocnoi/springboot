@@ -27,7 +27,7 @@ public class BookOfferController {
 	public List<BookOffer> getAllPublisher() {
 		return bookOfferServiceImpl.listAllBookOffer();
 	}
-	@RequestMapping(value = "/bookoffers", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
+	@RequestMapping(value = "/addbookoffers", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = "application/json; charset=UTF-8")
 	  public ResponseEntity<Void> createUser( @RequestBody List<BookOffer> bookOffer) {
 		Gson gson = new Gson();

@@ -16,7 +16,7 @@ public class NotificationController {
 	private NotificationService notificationServiceImpl;
 	
 	@RequestMapping(value = "/notifications")
-	public List<Notification> getAllNotification() {
+	public List<Notification> getAllNotifications() {
 		return notificationServiceImpl.listAllNotification();
 	}
 }

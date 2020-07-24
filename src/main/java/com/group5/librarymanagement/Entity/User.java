@@ -39,7 +39,7 @@ public class User {
 	private String cardNumber;
 	
 	@Column
-	private boolean status;
+	private Boolean status;
 	
 	public Integer getUserId() {
 		return userId;
