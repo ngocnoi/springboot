@@ -5,8 +5,6 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
-
 import com.group5.librarymanagement.Entity.User;
 import com.group5.librarymanagement.Repositories.UserRepository;
 import com.group5.librarymanagement.Service.UserService;
@@ -17,7 +15,7 @@ public class UserServiceImpl implements UserService{
 	@Autowired
 	private UserRepository userRepository;
 	@Override
-	public User addUser(@RequestBody User user) {
+	public User addUser(User user) {
 		// TODO Auto-generated method stub
 //		User createUser = new User();
 //		createUser.setFullname(user.getFullname());
@@ -32,8 +30,13 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public void updateUser(Integer id, User user) {
-		
-		
+		User userTemp = userRepository.findById(id).get();
+		if(userTemp != null) {
+			userTemp.setMail(user.getMail());
+			userTemp.setPhone(user.getPhone());
+			userTemp.setAddress(user.getAddress());
+		}
+		userRepository.saveAndFlush(userTemp);
 	}
 
 	@Override

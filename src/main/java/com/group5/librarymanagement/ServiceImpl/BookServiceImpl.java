@@ -96,11 +96,11 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
-	public List<Book> searchAdvance(String keyWord) {
+	public List<Book> searchTitle(String keyWord) {
 		// TODO Auto-generated method stub
-		List<Book> listResult = new ArrayList<Book>();
+		List<Book> listResult = new ArrayList<Book>();	
 		for (Book book : bookRepository.findAll()) {
-			if (keyWord.contains(book.getBookName())) {
+			if (book.getBookName().toLowerCase().contains(keyWord.toLowerCase())) {
 				listResult.add(book);
 			}
 		}

@@ -10,5 +10,5 @@ public interface BookService {
 	public abstract void updateBook(Integer id, Book book);
 	public abstract void deleteBook(Integer id);
 	public abstract List<Book> listBook();
-	public abstract List<Book> searchAdvance(String keyWord);
+	public abstract List<Book> searchTitle(String keyWord);
 }

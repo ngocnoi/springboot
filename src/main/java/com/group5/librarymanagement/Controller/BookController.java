@@ -44,5 +44,9 @@ public class BookController {
 		bookServiceImpl.updateBook(id, bookArr[0]);
 		return new ResponseEntity<Book>(HttpStatus.OK);
 	}
-
+	
+	@RequestMapping("/search/{keyWord}")
+	public List<Book> searchBook(@PathVariable String keyWord){
+		return bookServiceImpl.searchTitle(keyWord);
+	}
 }
