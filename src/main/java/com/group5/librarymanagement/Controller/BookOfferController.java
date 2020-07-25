@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 import com.group5.librarymanagement.Entity.BookOffer;
+import com.group5.librarymanagement.Entity.User;
 import com.group5.librarymanagement.Service.BookOfferService;
 import com.group5.librarymanagement.ServiceImpl.BookOfferServiceImpl;
 
@@ -27,6 +28,12 @@ public class BookOfferController {
 	public List<BookOffer> getAllPublisher() {
 		return bookOfferServiceImpl.listAllBookOffer();
 	}
+	
+	@PostMapping("/addBookOffer/new")
+	  public BookOffer createBookOffer(@RequestBody BookOffer bookOffer) {
+	    return bookOfferServiceImpl.addBookOffer(bookOffer);
+	  }
+	
 	@RequestMapping(value = "/addbookoffers", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = "application/json; charset=UTF-8")
 	  public ResponseEntity<Void> createUser( @RequestBody List<BookOffer> bookOffer) {
