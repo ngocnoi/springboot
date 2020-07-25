@@ -32,8 +32,10 @@ public class UserController {
 	  }
 	
 	@GetMapping("/existUser/{cardNumber}")
-	public User existUsername(@PathVariable final String cardNumber){
-		return userServicempl.existUserName(cardNumber);
+	public ResponseEntity<User> existUsername(@PathVariable final String cardNumber){
+		User u = userServicempl.existUserName(cardNumber);
+		if (u==null) return ResponseEntity.notFound().build();
+		return ResponseEntity.ok(u);
 		
 	}
 	@PutMapping("/updateUser/{id}")
