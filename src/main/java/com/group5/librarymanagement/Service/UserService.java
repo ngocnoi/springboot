@@ -10,4 +10,5 @@ public interface UserService {
 	public abstract void updateUser(Integer id, User user);
 	public abstract List<User> listAllUser();  
 	public abstract User existUserName(String cardNumber);
+	public abstract User AllUserByCardNumber(String cardNumber);
 }

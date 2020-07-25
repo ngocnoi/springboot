@@ -11,4 +11,5 @@ import com.group5.librarymanagement.Entity.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
     Optional<User> findFirstByCardNumber(String cardNumber);
+    User findAllByCardNumber(String cardNumber);
 }

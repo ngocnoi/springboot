@@ -26,6 +26,11 @@ public class UserController {
 		return userServicempl.listAllUser();
 		
 	}
+	@GetMapping(value = "/user/{cardNumber}")
+	public User getAllUserByCardNumber(@PathVariable final String cardNumber){
+		return userServicempl.AllUserByCardNumber(cardNumber);
+		
+	}
 	@PostMapping("/addUser/new")
 	  public User createUser(@RequestBody User user) {
 	    return userServicempl.addUser(user);

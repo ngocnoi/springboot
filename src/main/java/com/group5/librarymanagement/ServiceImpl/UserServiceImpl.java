@@ -32,7 +32,6 @@ public class UserServiceImpl implements UserService{
 	public void updateUser(Integer id, User user) {
 		User userTemp = userRepository.findById(id).get();
 		if(userTemp != null) {
-			userTemp.setMail(user.getMail());
 			userTemp.setPhone(user.getPhone());
 			userTemp.setAddress(user.getAddress());
 		}
@@ -50,6 +49,12 @@ public class UserServiceImpl implements UserService{
 		Optional<User> optionalUser = userRepository.findFirstByCardNumber(cardNumber);
 		if (optionalUser.isPresent()) return optionalUser.get();
 		return null;
+	}
+
+	@Override
+	public User AllUserByCardNumber(String cardNumber) {
+		// TODO Auto-generated method stub
+		return userRepository.findAllByCardNumber(cardNumber);
 	}
 	
 	
