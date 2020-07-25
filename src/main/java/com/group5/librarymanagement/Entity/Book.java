@@ -16,6 +16,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "book")
 public class Book {
@@ -62,32 +64,32 @@ public class Book {
 
 	@Column
 	private Boolean status;
-
+	
 	@OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<ImageBook> listImageOfBook =new ArrayList<>();
-
+	
 	@ManyToOne
 	@JoinColumn(name = "publisher_id")
 	private Publisher publisher;
-
+	
 	@ManyToOne
 	@JoinColumn(name = "language_id")
 	private Language language;
-
+	
 	@ManyToOne
 	@JoinColumn(name = "bookshelf_id")
 	private BookShelf bookshelf;
-
+	
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinTable(name = "book_author", joinColumns = { @JoinColumn(name = "book_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "author_id") })
 	private List<Author> authors = new ArrayList<>();
-
+	
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinTable(name = "book_translator", joinColumns = { @JoinColumn(name = "book_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "translator_id") })
 	private List<Translator> translators = new ArrayList<Translator>();
-
+	
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinTable(name = "book_category", joinColumns = { @JoinColumn(name = "book_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "category_id") })
@@ -98,13 +100,19 @@ public class Book {
 			@JoinColumn(name = "borrowRequest_id") })
 	private List<BorrowRequest> borrowRequest = new ArrayList<>();
 	
-	
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-	@JoinTable(name = "book_cart", joinColumns = { @JoinColumn(name = "book_id") }, inverseJoinColumns = {
-			@JoinColumn(name = "cart_id") })
-	private List<Cart> carts = new ArrayList<>();
+	@JsonIgnore
+	@ManyToMany(mappedBy = "books")
+	private List<Cart> carts = new ArrayList<Cart>();
 	
 	
+	public List<Cart> getCarts() {
+		return carts;
+	}
+
+	public void setCarts(List<Cart> carts) {
+		this.carts = carts;
+	}
+
 	public List<BorrowRequest> getBorrowRequest() {
 		return borrowRequest;
 	}

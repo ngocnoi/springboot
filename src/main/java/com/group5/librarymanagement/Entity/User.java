@@ -129,7 +129,7 @@ public class User {
 	@OneToMany(mappedBy="user",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<BorrowRequest> borrowRequest = new ArrayList<>();
 	
-	@JsonIgnore
+	//@JsonIgnore
 	@OneToMany(mappedBy="user",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Cart> cart = new ArrayList<>();
 	

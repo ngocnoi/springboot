@@ -37,11 +37,8 @@ public class BookController {
 	}
 	
 	@RequestMapping(value = "/updateBook/{id}")
-	public ResponseEntity<Book> updateBook(@PathVariable("id")Integer id, @RequestBody List<Book> books){
-		Gson gson = new Gson();
-		String json = gson.toJson(books);
-		Book[] bookArr = gson.fromJson(json, Book[].class);
-		bookServiceImpl.updateBook(id, bookArr[0]);
+	public ResponseEntity<Book> updateBook(@PathVariable("id")Integer id, @RequestBody Book book){
+		bookServiceImpl.updateBook(id, book);
 		return new ResponseEntity<Book>(HttpStatus.OK);
 	}
 	

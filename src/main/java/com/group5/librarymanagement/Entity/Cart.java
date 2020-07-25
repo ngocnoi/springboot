@@ -3,12 +3,15 @@ package com.group5.librarymanagement.Entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -25,12 +28,14 @@ public class Cart {
 	@Column
 	private Integer status = 0;
 	
+	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name = "user_id", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "user_id")
 	private User user;
 	
-	@JsonIgnore
-	@ManyToMany(mappedBy = "carts")
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+	@JoinTable(name = "cart_book", joinColumns = { @JoinColumn(name = "cart_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "book_id") })
 	private List<Book> books = new ArrayList<Book>();
 	
 	public Integer getCardId() {
@@ -56,4 +61,13 @@ public class Cart {
 	public void setUser(User user) {
 		this.user = user;
 	}
+
+	public List<Book> getBooks() {
+		return books;
+	}
+
+	public void setBooks(List<Book> books) {
+		this.books = books;
+	}
+	
 }

@@ -72,14 +72,25 @@ public class BookServiceImpl implements BookService {
 			bookTemp.setVersion(book.getVersion());
 			bookTemp.setWeight(book.getWeight());
 			bookTemp.setStatus(book.getStatus());
-			bookTemp.setAuthors(book.getAuthors());
-			bookTemp.setPublisher(book.getPublisher());
-			bookTemp.setLanguage(book.getLanguage());
-			bookTemp.setBookshelf(book.getBookshelf());
-			bookTemp.setCategories(book.getCategories());
-			bookTemp.setTranslators(book.getTranslators());
+			if (book.getAuthors() != null) {
+				bookTemp.setAuthors(book.getAuthors());
+			}
+			if (book.getPublisher() != null) {
+				bookTemp.setPublisher(book.getPublisher());
+			}
+			if (book.getLanguage() != null) {
+				bookTemp.setLanguage(book.getLanguage());
+			}
+			if (book.getBookshelf() != null) {
+				bookTemp.setBookshelf(book.getBookshelf());
+			}
+			if (book.getCategories() != null) {
+				bookTemp.setCategories(book.getCategories());
+			}
+			if (book.getTranslators() != null) {
+				bookTemp.setTranslators(book.getTranslators());
+			}
 		}
-
 		bookRepository.saveAndFlush(bookTemp);
 
 	}
@@ -98,7 +109,7 @@ public class BookServiceImpl implements BookService {
 	@Override
 	public List<Book> searchTitle(String keyWord) {
 		// TODO Auto-generated method stub
-		List<Book> listResult = new ArrayList<Book>();	
+		List<Book> listResult = new ArrayList<Book>();
 		for (Book book : bookRepository.findAll()) {
 			if (book.getBookName().toLowerCase().contains(keyWord.toLowerCase())) {
 				listResult.add(book);
