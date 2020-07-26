@@ -131,6 +131,6 @@ public class User {
 	
 	//@JsonIgnore
 	@OneToMany(mappedBy="user",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<Cart> cart = new ArrayList<>();
+	private List<Cart> cart;
 	
 }

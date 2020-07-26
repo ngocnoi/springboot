@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -26,7 +27,7 @@ public class Cart {
 	private Integer cardId;
 	
 	@Column
-	private Integer status = 0;
+	private Integer status;
 	
 	@JsonIgnore
 	@ManyToOne
@@ -36,7 +37,7 @@ public class Cart {
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinTable(name = "cart_book", joinColumns = { @JoinColumn(name = "cart_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "book_id") })
-	private List<Book> books = new ArrayList<Book>();
+	private List<Book> books;
 	
 	public Integer getCardId() {
 		return cardId;

@@ -102,9 +102,11 @@ public class Book {
 	
 	@JsonIgnore
 	@ManyToMany(mappedBy = "books")
-	private List<Cart> carts = new ArrayList<Cart>();
+	private List<Cart> carts;
 	
-	
+
+
+
 	public List<Cart> getCarts() {
 		return carts;
 	}

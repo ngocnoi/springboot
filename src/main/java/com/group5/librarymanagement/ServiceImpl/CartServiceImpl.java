@@ -27,4 +27,9 @@ public class CartServiceImpl implements CartService{
 		cartRepository.saveAndFlush(cart);
 	}
 
+	@Override
+	public List<Cart> listCartByStatus(Integer status, Integer id) {
+		return cartRepository.findAllByStatusAndUser(status, id);
+	}
+
 }
