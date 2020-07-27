@@ -5,12 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.group5.librarymanagement.Entity.BookBackUp;
 import com.group5.librarymanagement.Entity.Cart;
+import com.group5.librarymanagement.Entity.User;
 import com.group5.librarymanagement.Repositories.CartRepository;
 import com.group5.librarymanagement.Service.CartService;
 
 @Service
-public class CartServiceImpl implements CartService{
+public  class CartServiceImpl implements CartService{
 	
 	@Autowired
 	private CartRepository cartRepository;
@@ -28,8 +30,10 @@ public class CartServiceImpl implements CartService{
 	}
 
 	@Override
-	public List<Cart> listCartByStatus(Integer status, Integer id) {
-		return cartRepository.findAllByStatusAndUser(status, id);
+	public List<Cart> listCartByStatusAndUser(Integer status, User user) {
+		// TODO Auto-generated method stub
+		return cartRepository.findByStatusAndUser(status, user);
 	}
 
+	
 }

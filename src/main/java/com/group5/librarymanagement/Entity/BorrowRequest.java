@@ -45,6 +45,10 @@ public class BorrowRequest {
 	@ManyToMany(mappedBy = "borrowRequest")
 	private List<Book> books = new ArrayList<Book>();
 	
+	@JsonIgnore
+	@ManyToMany(mappedBy = "borrowRequest")
+	private List<BookBackUp> bookBackUps;
+	
 	@ManyToOne
 	@JoinColumn(name = "librian_id", nullable = false, insertable = false, updatable = false)
 	private Librian librian;

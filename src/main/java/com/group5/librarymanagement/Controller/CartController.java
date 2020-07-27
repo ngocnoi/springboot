@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.group5.librarymanagement.Entity.Cart;
+import com.group5.librarymanagement.Entity.User;
 import com.group5.librarymanagement.ServiceImpl.CartServiceImpl;
 
 @RestController
@@ -26,9 +27,9 @@ public class CartController {
 		return cartServiceImpl.listCart();
 	}
 	
-	@RequestMapping(value = "/listCartByStatus", method =RequestMethod.GET)
-	public List<Cart> listCartByStatus(@PathVariable Integer status,@PathVariable Integer id){
-		return cartServiceImpl.listCartByStatus(status, id);
+	@RequestMapping(value = "/listCartByStatus/{status}/{user}", method =RequestMethod.GET)
+	public List<Cart> listCartByStatus(@PathVariable Integer status,@RequestBody User user){
+		return cartServiceImpl.listCartByStatusAndUser(status, user);
 	}
 	
 	@RequestMapping(value = "/addCart", method = RequestMethod.POST)
